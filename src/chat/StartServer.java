@@ -11,20 +11,15 @@ public class StartServer {
 			String ip = JOptionPane.showInputDialog("Digite o IP: ");
 			String port = JOptionPane.showInputDialog("\nDigite a porta: ");
 		 	
-				//System.setSecurityManager(new RMISecurityManager());
 			 	java.rmi.registry.LocateRegistry.createRegistry(Integer.parseInt(port));
 			 	
-			 	IServer server = new Server();
-			 				 				 
-//				IServer stub = (IServer) UnicastRemoteObject.exportObject(server, 9999); 	
-				
-			 	//System.setProperty("java.rmi.server.hostname", ip);
+			 	IServer server = new Server();			 				 				
 			 	
 				Naming.rebind("rmi://" + ip + ":" + port + "/chat", server);
-				System.out.println("[System] Chat Server is ready at ip => " + ip + " and port => " + port);
+				System.out.println("[Sistema] O servidor de chat esta utilizando o ip => " + ip + " na porta => " + port);
 				
 			}catch (Exception e) {
-					System.out.println("Chat Server failed: " + e);
+					System.out.println("Houve uma falha! " + e);
 			}
 	}
 }

@@ -16,9 +16,9 @@ public class Server  extends UnicastRemoteObject implements IServer
 	
 	public boolean login(IClient ic) throws RemoteException
 	{	
-		System.out.println(ic.getName() + "  got connected....");	
-		ic.tell("You have Connected successfully.");
-		publish(ic.getName()+ " has just connected.");
+		System.out.println(ic.getName() + "  conectou!");	
+		ic.tell("Cliente conectado com sucesso.");
+		publish(ic.getName()+ " acabou de entrar na conversa.");
 		v.add(ic);
 		return true;		
 	}
@@ -30,8 +30,9 @@ public class Server  extends UnicastRemoteObject implements IServer
 		    	IClient tmp = (IClient)v.get(i);
 			tmp.tell(s);
 		    }catch(Exception e){
-		    	//problem with the client not connected.
-		    	//Better to remove it
+
+		    	v.remove(i);
+		    	
 		    }
 		}
 	}
